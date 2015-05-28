@@ -36,13 +36,14 @@ unsigned long InputDebounce::process(unsigned long now)
   if(!_enabled) {
     return 0;
   }
-  int value = digitalRead(_pinIn); // LOW (with pull-up res) when button pressed (on)
+  bool value = digitalRead(_pinIn) ? true : false; // LOW (with pull-up res) when button pressed (on)
   // adjust value pressed (on), see TODO...
   value = !value;
   // check if input value changed
   if(_valueLast != value) {
     _valueLast = value;
     _timeStamp = now;
+    return 0;
   }
   // wait debouncing time
   if(now - _timeStamp > _debDelay) {
@@ -53,8 +54,9 @@ unsigned long InputDebounce::process(unsigned long now)
         _stateOnCount++;
       }
     }
+    return _stateOn ? now - _timeStamp : 0;
   }
-  return _stateOn ? now - _timeStamp : 0;
+  return 0;
 }
 
 unsigned long InputDebounce::getStateOnCount()
