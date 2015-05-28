@@ -1,7 +1,5 @@
 /*
-  Input-Debounce
-
-  Test TCLite on Arduino Due
+  Library InputDebounce
 
   Mario Ban, 05.2015
 
@@ -39,7 +37,7 @@ unsigned long InputDebounce::process(unsigned long now)
     return 0;
   }
   int value = digitalRead(_pinIn); // LOW (with pull-up res) when button pressed (on)
-  // adjust value pressed (on)
+  // adjust value pressed (on), see TODO...
   value = !value;
   // check if input value changed
   if(_valueLast != value) {
