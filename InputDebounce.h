@@ -22,7 +22,7 @@ public:
 
   void setup(uint8_t pinIn, unsigned long debDelay); // input pin with pull-up resistor
   unsigned long process(unsigned long now); // return pressed time if on (> debounce delay)
-  unsigned long getStateOnCount();
+  unsigned long getStateOnCount() const;
 
 private:
   uint8_t _pinIn;

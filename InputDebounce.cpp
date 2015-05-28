@@ -59,7 +59,7 @@ unsigned long InputDebounce::process(unsigned long now)
   return 0;
 }
 
-unsigned long InputDebounce::getStateOnCount()
+unsigned long InputDebounce::getStateOnCount() const
 {
   return _stateOnCount;
 }
