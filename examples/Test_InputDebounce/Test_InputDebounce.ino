@@ -31,6 +31,7 @@ void setup()
 void loop()
 {
   static unsigned int buttonTest_StateOnCount = 0;
+  static unsigned int buttonTest_OnTimeLast = 0;
   
   unsigned long now = millis();
   
@@ -38,6 +39,7 @@ void loop()
   unsigned int buttonTest_OnTime = buttonTest.process(now);
   
   if(buttonTest_OnTime) {
+    buttonTest_OnTimeLast = buttonTest_OnTime;
     unsigned int count = buttonTest.getStateOnCount();
     if(buttonTest_StateOnCount != count) {
       buttonTest_StateOnCount = count;
@@ -53,5 +55,13 @@ void loop()
   }
   else {
     digitalWrite(pinLED, LOW); // turn the LED off
+    if(buttonTest_OnTimeLast) {
+      Serial.print("LOW (");
+      Serial.print(buttonTest_OnTimeLast);
+      Serial.println("ms)");
+      buttonTest_OnTimeLast = 0;
+    }
   }
+
+  delay(1); // [ms]
 }
