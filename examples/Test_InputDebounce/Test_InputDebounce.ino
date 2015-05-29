@@ -1,5 +1,5 @@
 /*
-  Test Library InputDebounce
+  Test InputDebounce Arduino Library
 
   Mario Ban, 05.2015
 

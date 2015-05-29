@@ -1,4 +1,4 @@
-# Arduino library InputDebounce
+# InputDebounce Arduino Library
 
 Simple polling input debounce Arduino library.
 
