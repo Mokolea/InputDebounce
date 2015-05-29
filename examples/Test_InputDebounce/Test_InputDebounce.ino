@@ -54,8 +54,8 @@ void loop()
     Serial.println("ms)");
   }
   else {
-    digitalWrite(pinLED, LOW); // turn the LED off
     if(buttonTest_OnTimeLast) {
+      digitalWrite(pinLED, LOW); // turn the LED off
       Serial.print("LOW (");
       Serial.print(buttonTest_OnTimeLast);
       Serial.println("ms)");
