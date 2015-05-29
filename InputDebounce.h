@@ -1,12 +1,12 @@
 /*
-  Library InputDebounce
+  InputDebounce Arduino Library
 
   Mario Ban, 05.2015
 
   TODO:
    - handle input pin with:
      - pull-down resistor
-     - pull-up resistor
+     - pull-up resistor (currently handled)
      - internal pull-up resistor
 */
 
@@ -18,9 +18,9 @@
 class InputDebounce
 {
 public:
-  InputDebounce();
+  InputDebounce(int8_t pinIn = -1, unsigned long debDelay = 0); // set input pin >= 0 to enable
 
-  void setup(uint8_t pinIn, unsigned long debDelay); // input pin with pull-up resistor
+  void setup(int8_t pinIn, unsigned long debDelay);
   unsigned long process(unsigned long now); // return pressed time if on (> debounce delay)
   unsigned long getStateOnCount() const;
 

@@ -1,5 +1,5 @@
 /*
-  Library InputDebounce
+  InputDebounce Arduino Library
 
   Mario Ban, 05.2015
 
@@ -7,7 +7,7 @@
 
 #include "InputDebounce.h"
 
-InputDebounce::InputDebounce()
+InputDebounce::InputDebounce(int8_t pinIn, unsigned long debDelay)
   : _pinIn(0)
   , _debDelay(0)
   , _enabled(false)
@@ -16,11 +16,12 @@ InputDebounce::InputDebounce()
   , _timeStamp(0)
   , _stateOnCount(0)
 {
+  setup(pinIn, debDelay);
 }
 
-void InputDebounce::setup(uint8_t pinIn, unsigned long debDelay)
+void InputDebounce::setup(int8_t pinIn, unsigned long debDelay)
 {
-  if(pinIn > 0) {
+  if(pinIn >= 0) {
     _pinIn = pinIn;
     _debDelay = debDelay;
     pinMode(_pinIn, INPUT);
