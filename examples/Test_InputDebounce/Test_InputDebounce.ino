@@ -7,7 +7,7 @@
 
 #include "InputDebounce.h"
 
-#define BUTTON_DEBOUNCE_DELAY   20   /* [ms] */
+#define BUTTON_DEBOUNCE_DELAY   20   // [ms]
 
 static const int pinLED = LED_BUILTIN; // 13
 static const int pinSwitch = 2;
@@ -16,9 +16,9 @@ static InputDebounce buttonTest;
 
 void setup()
 {
-  // initialize digital pin 13 as an output
+  // initialize digital pin as an output
   pinMode(pinLED, OUTPUT);
-  // initialize digital pin 2 as an input
+  // initialize digital pin as an input
   pinMode(pinSwitch, INPUT);
   
   // init serial
@@ -39,14 +39,18 @@ void loop()
   unsigned int buttonTest_OnTime = buttonTest.process(now);
   
   if(buttonTest_OnTime) {
+    // save current on-time (button pressed), to be used when released
     buttonTest_OnTimeLast = buttonTest_OnTime;
+    // check for state change
     unsigned int count = buttonTest.getStateOnCount();
     if(buttonTest_StateOnCount != count) {
       buttonTest_StateOnCount = count;
+      // handle pressed state
       digitalWrite(pinLED, HIGH); // turn the LED on
       Serial.print("HIGH");
     }
     else {
+      // handle still pressed state
       Serial.print("HIGH still pressed");
     }
     Serial.print(" (");
@@ -55,6 +59,7 @@ void loop()
   }
   else {
     if(buttonTest_OnTimeLast) {
+      // handle released state
       digitalWrite(pinLED, LOW); // turn the LED off
       Serial.print("LOW (");
       Serial.print(buttonTest_OnTimeLast);
@@ -62,6 +67,6 @@ void loop()
       buttonTest_OnTimeLast = 0;
     }
   }
-
+  
   delay(1); // [ms]
 }

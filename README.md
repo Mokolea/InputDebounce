@@ -5,4 +5,6 @@ Simple polling input debounce Arduino library.
 Facts:
  - used for push-button like switches
  - delivers pressed-on time [ms]
- - input pin with external pull-up resistor
+ - assumes input pin with external pull-up resistor
+
+-- Mario

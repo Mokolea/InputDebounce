@@ -21,7 +21,7 @@ public:
   InputDebounce(int8_t pinIn = -1, unsigned long debDelay = 0); // set input pin >= 0 to enable
 
   void setup(int8_t pinIn, unsigned long debDelay);
-  unsigned long process(unsigned long now); // return pressed time if on (> debounce delay)
+  unsigned long process(unsigned long now); // poll button state, returns pressed time if on (> debounce delay)
   unsigned long getStateOnCount() const;
 
 private:
@@ -33,7 +33,6 @@ private:
   bool _stateOn; // current on state (debounced)
   unsigned long _timeStamp; // last input value (state) change, start debounce time
   unsigned long _stateOnCount;
-
 };
 
 #endif // _INPUT_DEBOUNCE_H
