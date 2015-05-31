@@ -3,11 +3,6 @@
 
   Mario Ban, 05.2015
 
-  TODO:
-   - handle input pin with:
-     - pull-down resistor
-     - pull-up resistor (currently handled)
-     - internal pull-up resistor
 */
 
 #ifndef _INPUT_DEBOUNCE_H
@@ -18,15 +13,22 @@
 class InputDebounce
 {
 public:
-  InputDebounce(int8_t pinIn = -1, unsigned long debDelay = 0); // set input pin >= 0 to enable
+  enum PinInMode {
+    PIM_EXT_PULL_DOWN_RES,
+    PIM_EXT_PULL_UP_RES,
+    PIM_INT_PULL_UP_RES
+  };
 
-  void setup(int8_t pinIn, unsigned long debDelay);
+  InputDebounce(int8_t pinIn = -1, unsigned long debDelay = 0, PinInMode pinInMode = PIM_EXT_PULL_UP_RES); // set input pin >= 0 to enable
+
+  void setup(int8_t pinIn, unsigned long debDelay, PinInMode pinInMode);
   unsigned long process(unsigned long now); // poll button state, returns pressed time if on (> debounce delay)
   unsigned long getStateOnCount() const;
 
 private:
   uint8_t _pinIn;
   unsigned long _debDelay;
+  PinInMode _pinInMode;
 
   bool _enabled;
   bool _valueLast; // last input value
