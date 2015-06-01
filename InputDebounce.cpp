@@ -10,7 +10,7 @@
 InputDebounce::InputDebounce(int8_t pinIn, unsigned long debDelay, PinInMode pinInMode)
   : _pinIn(0)
   , _debDelay(0)
-  , _pinInMode(PIM_EXT_PULL_UP_RES)
+  , _pinInMode(PIM_INT_PULL_UP_RES)
   , _enabled(false)
   , _valueLast(false)
   , _stateOn(false)

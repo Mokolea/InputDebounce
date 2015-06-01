@@ -18,18 +18,18 @@ public:
     PIM_EXT_PULL_UP_RES,
     PIM_INT_PULL_UP_RES
   };
-
-  InputDebounce(int8_t pinIn = -1, unsigned long debDelay = 0, PinInMode pinInMode = PIM_EXT_PULL_UP_RES); // set input pin >= 0 to enable
-
+  
+  InputDebounce(int8_t pinIn = -1, unsigned long debDelay = 0, PinInMode pinInMode = PIM_INT_PULL_UP_RES); // set input pin >= 0 to enable
+  
   void setup(int8_t pinIn, unsigned long debDelay, PinInMode pinInMode);
   unsigned long process(unsigned long now); // poll button state, returns pressed time if on (> debounce delay)
   unsigned long getStateOnCount() const;
-
+  
 private:
   uint8_t _pinIn;
   unsigned long _debDelay;
   PinInMode _pinInMode;
-
+  
   bool _enabled;
   bool _valueLast; // last input value
   bool _stateOn; // current on state (debounced)

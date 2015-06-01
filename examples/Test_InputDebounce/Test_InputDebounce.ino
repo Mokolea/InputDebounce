@@ -23,7 +23,7 @@ void setup()
   Serial.begin(9600);
   
   // setup input button (debounced)
-  buttonTest.setup(pinSwitch, BUTTON_DEBOUNCE_DELAY, InputDebounce::PIM_EXT_PULL_UP_RES);
+  buttonTest.setup(pinSwitch, BUTTON_DEBOUNCE_DELAY, InputDebounce::PIM_INT_PULL_UP_RES);
 }
 
 void loop()

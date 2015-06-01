@@ -8,7 +8,7 @@ Facts:
  - delivers pressed-on time [ms]
  - handles input pin with:
     - external pull-down resistor
-    - external pull-up resistor (default)
-    - internal pull-up resistor
+    - external pull-up resistor
+    - internal pull-up resistor (default)
 
 -- Mario
