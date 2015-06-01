@@ -18,8 +18,6 @@ void setup()
 {
   // initialize digital pin as an output
   pinMode(pinLED, OUTPUT);
-  // initialize digital pin as an input
-  pinMode(pinSwitch, INPUT);
   
   // init serial
   Serial.begin(9600);

@@ -26,7 +26,7 @@ void InputDebounce::setup(int8_t pinIn, unsigned long debDelay, PinInMode pinInM
     _pinIn = pinIn;
     _debDelay = debDelay;
     _pinInMode = pinInMode;
-    // configure input pin
+    // initialize digital pin as an input
     if(_pinInMode == PIM_INT_PULL_UP_RES) {
       pinMode(_pinIn, INPUT_PULLUP);
     }
