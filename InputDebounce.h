@@ -10,6 +10,8 @@
 
 #include "Arduino.h"
 
+#define DEFAULT_INPUT_DEBOUNCE_DELAY   20   // [ms]
+
 class InputDebounce
 {
 public:
@@ -19,9 +21,13 @@ public:
     PIM_INT_PULL_UP_RES
   };
   
-  InputDebounce(int8_t pinIn = -1, unsigned long debDelay = 0, PinInMode pinInMode = PIM_INT_PULL_UP_RES); // set input pin >= 0 to enable
-  
-  void setup(int8_t pinIn, unsigned long debDelay, PinInMode pinInMode);
+  InputDebounce(int8_t pinIn = -1, // set input pin >= 0 to enable
+                unsigned long debDelay = DEFAULT_INPUT_DEBOUNCE_DELAY,
+                PinInMode pinInMode = PIM_INT_PULL_UP_RES);
+                
+  void setup(int8_t pinIn,
+             unsigned long debDelay = DEFAULT_INPUT_DEBOUNCE_DELAY,
+             PinInMode pinInMode = PIM_INT_PULL_UP_RES);
   unsigned long process(unsigned long now); // poll button state, returns pressed time if on (> debounce delay)
   unsigned long getStateOnCount() const;
   
