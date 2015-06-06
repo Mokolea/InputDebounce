@@ -3,6 +3,7 @@
 
   Mario Ban, 05.2015
 
+  GNU General Public License v2.0
 */
 
 #ifndef _INPUT_DEBOUNCE_H
@@ -20,7 +21,7 @@ public:
     PIM_EXT_PULL_UP_RES,
     PIM_INT_PULL_UP_RES
   };
-  
+
   InputDebounce(int8_t pinIn = -1, // set input pin >= 0 to enable
                 unsigned long debDelay = DEFAULT_INPUT_DEBOUNCE_DELAY,
                 PinInMode pinInMode = PIM_INT_PULL_UP_RES);
