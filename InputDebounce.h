@@ -34,6 +34,10 @@ public:
   unsigned long getStateOnCount() const;
   
 private:
+  // implicitly implemented, not to be used
+  InputDebounce(const InputDebounce&);
+  InputDebounce& operator=(const InputDebounce&);
+  
   uint8_t _pinIn;
   unsigned long _debDelay;
   PinInMode _pinInMode;
