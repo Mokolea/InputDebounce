@@ -7,9 +7,11 @@ before_install:
 
 install:
   #- arduino --install-library "Adafruit SleepyDog Library,Adafruit FONA Library"
+  - arduino --install-library "Adafruit GFX Library,Adafruit HX8357 Library"
 
 script:
   #- build_main_platforms
+  - build_platform uno
   - build_platform due
 
 notifications:
