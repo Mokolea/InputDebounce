@@ -1,0 +1,18 @@
+language: c
+
+sudo: false
+
+before_install:
+  - source <(curl -SLs https://raw.githubusercontent.com/Mokolea/travis-ci-arduino/master/install.sh)
+
+install:
+  #- arduino --install-library "Adafruit SleepyDog Library,Adafruit FONA Library"
+
+script:
+  #- build_main_platforms
+  - build_platform due
+
+notifications:
+  email:
+    on_success: change
+    on_failure: always
