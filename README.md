@@ -1,4 +1,4 @@
-# InputDebounce Arduino Library
+# InputDebounce Arduino Library [![Build Status](https://travis-ci.org/Mokolea/InputDebounce.svg)](https://travis-ci.org/Mokolea/InputDebounce)
 
 Simple polling input debounce Arduino library.
 

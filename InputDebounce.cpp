@@ -19,7 +19,7 @@ InputDebounce::InputDebounce(int8_t pinIn, unsigned long debDelay, PinInMode pin
   , _timeStamp(0)
   , _stateOnCount(0)
 {
-  setup(pinIn, debDelay, pinInMode);
+  xsetup(pinIn, debDelay, pinInMode);
 }
 
 void InputDebounce::setup(int8_t pinIn, unsigned long debDelay, PinInMode pinInMode)
