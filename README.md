@@ -1,6 +1,6 @@
 # InputDebounce Arduino Library [![Build Status](https://travis-ci.org/Mokolea/InputDebounce.svg)](https://travis-ci.org/Mokolea/InputDebounce)
 
-Simple polling input debounce Arduino library.
+Simple polling input debounce [Arduino](https://www.arduino.cc/) library.
 
 Facts:
  - used for push-button like switches
