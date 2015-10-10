@@ -14,7 +14,7 @@
 static const int pinLED = LED_BUILTIN; // 13
 static const int pinSwitch = 2;
 
-static InputDebounce buttonTest;
+static InputDebounce buttonTest; // not enabled yet, setup has to be called later
 
 void setup()
 {
@@ -33,14 +33,15 @@ void setup()
 
 void loop()
 {
-  static unsigned int buttonTest_StateOnCount = 0;
-  static unsigned int buttonTest_OnTimeLast = 0;
+  static unsigned int buttonTest_StateOnCount = 0; // to handle new pressed state, and still pressed state
+  static unsigned int buttonTest_OnTimeLast = 0; // to handle new released state, and remember last on-time (button pressed)
   
   unsigned long now = millis();
   
   // poll button state, return on-time [ms] if pressed (debounced)
   unsigned int buttonTest_OnTime = buttonTest.process(now);
   
+  // handle input button
   if(buttonTest_OnTime) {
     // save current on-time (button pressed), to be used when released
     buttonTest_OnTimeLast = buttonTest_OnTime;
@@ -67,7 +68,7 @@ void loop()
       Serial.print("LOW (");
       Serial.print(buttonTest_OnTimeLast);
       Serial.println("ms)");
-      buttonTest_OnTimeLast = 0;
+      buttonTest_OnTimeLast = 0; // reset, do not handle this released state again
     }
   }
   

@@ -23,7 +23,7 @@ public:
     PIM_INT_PULL_UP_RES
   };
   
-  InputDebounce(int8_t pinIn = -1, // set input pin >= 0 to enable
+  InputDebounce(int8_t pinIn = -1, // set input pin >= 0 to enable --> calls setup
                 unsigned long debDelay = DEFAULT_INPUT_DEBOUNCE_DELAY,
                 PinInMode pinInMode = PIM_INT_PULL_UP_RES);
                 
