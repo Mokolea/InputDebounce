@@ -24,6 +24,8 @@ void setup()
   // init serial
   Serial.begin(9600);
   
+  Serial.println("Test InputDebounce library");
+  
   // setup input button (debounced)
   buttonTest.setup(pinSwitch, BUTTON_DEBOUNCE_DELAY, InputDebounce::PIM_INT_PULL_UP_RES);
   // examples
@@ -65,7 +67,7 @@ void loop()
     if(buttonTest_OnTimeLast) {
       // handle released state
       digitalWrite(pinLED, LOW); // turn the LED off
-      Serial.print("LOW (");
+      Serial.print("LOW (last on-time: HIGH ");
       Serial.print(buttonTest_OnTimeLast);
       Serial.println("ms)");
       buttonTest_OnTimeLast = 0; // reset, do not handle this released state again
