@@ -11,7 +11,7 @@ Facts:
     - external pull-up resistor
     - internal pull-up resistor (default)
 
-Available from the Arduino IDE Library Manager
+Available from the Arduino IDE [Library Manager](https://www.arduino.cc/en/Guide/Libraries)
 
 *GNU General Public License v2.0*
 
