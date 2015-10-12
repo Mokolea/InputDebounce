@@ -13,6 +13,10 @@ Facts:
 
 Available from the Arduino IDE [Library Manager](https://www.arduino.cc/en/Guide/Libraries)
 
+Using:
+**TODO...**
+For now, just see the [example](https://github.com/Mokolea/InputDebounce/blob/master/examples/Test_InputDebounce/Test_InputDebounce.ino)
+
 *GNU General Public License v2.0*
 
 -- Mario
