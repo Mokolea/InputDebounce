@@ -2,7 +2,7 @@
 
 Simple polling input debounce [Arduino](https://www.arduino.cc/) library.
 
-Facts:
+## Facts
  - used for push-button like switches
  - delivers input value (state) after it has been stable (not flickering) for longer than the debounce period
  - delivers pressed-on time [ms]
@@ -13,7 +13,7 @@ Facts:
 
 Available from the Arduino IDE [Library Manager](https://www.arduino.cc/en/Guide/Libraries)
 
-Using:
+## Using
 **TODO...**
 For now, just see the [example](https://github.com/Mokolea/InputDebounce/blob/master/examples/Test_InputDebounce/Test_InputDebounce.ino)
 
