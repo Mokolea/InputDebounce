@@ -2,6 +2,7 @@
   InputDebounce Arduino Library
 
   Mario Ban, 05.2015
+  https://github.com/Mokolea/InputDebounce
 
   GNU General Public License v2.0
   Copyright (C) 2015 Mario Ban
