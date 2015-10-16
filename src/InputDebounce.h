@@ -30,7 +30,7 @@ public:
   void setup(int8_t pinIn,
              unsigned long debDelay = DEFAULT_INPUT_DEBOUNCE_DELAY,
              PinInMode pinInMode = PIM_INT_PULL_UP_RES);
-  unsigned long process(unsigned long now); // poll button state, returns pressed time if on (> debounce delay)
+  unsigned long process(unsigned long now); // poll button state, returns continuous pressed time if on (> debounce delay)
   unsigned long getStateOnCount() const;
   
 private:

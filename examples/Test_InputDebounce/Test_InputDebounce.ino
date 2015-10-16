@@ -40,7 +40,7 @@ void loop()
   
   unsigned long now = millis();
   
-  // poll button state, return on-time [ms] if pressed (debounced)
+  // poll button state, return continuous on-time [ms] if pressed (debounced)
   unsigned int buttonTest_OnTime = buttonTest.process(now);
   
   // handle input button
