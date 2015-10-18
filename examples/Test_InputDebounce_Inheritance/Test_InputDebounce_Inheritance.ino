@@ -19,8 +19,10 @@ class MyInputDebounce : public InputDebounce
 {
 public:
   MyInputDebounce(int8_t pinIn = -1, unsigned long debDelay = DEFAULT_INPUT_DEBOUNCE_DELAY, PinInMode pinInMode = PIM_INT_PULL_UP_RES)
-  : InputDebounce(pinIn, debDelay, pinInMode)
-  , _pinLED(-1)
+    : InputDebounce(pinIn, debDelay, pinInMode)
+    , _pinLED(-1)
+  {}
+  virtual ~MyInputDebounce()
   {}
   void setPinLED(int8_t pinLED)
   {
