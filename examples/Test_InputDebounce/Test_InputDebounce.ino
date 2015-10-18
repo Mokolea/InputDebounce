@@ -29,9 +29,11 @@ void setup()
   
   // setup input button (debounced)
   buttonTest.setup(pinSwitch, BUTTON_DEBOUNCE_DELAY, InputDebounce::PIM_INT_PULL_UP_RES);
+  
   // examples
   // buttonTest.setup(pinSwitch);
   // buttonTest.setup(pinSwitch, DEFAULT_INPUT_DEBOUNCE_DELAY);
+  // buttonTest.setup(pinSwitch, BUTTON_DEBOUNCE_DELAY, InputDebounce::PIM_EXT_PULL_UP_RES);
 }
 
 void loop()

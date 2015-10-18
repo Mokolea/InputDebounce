@@ -19,9 +19,15 @@ InputDebounce::InputDebounce(int8_t pinIn, unsigned long debDelay, PinInMode pin
   , _stateOn(false)
   , _timeStamp(0)
   , _stateOnCount(0)
+  , _pressedCallback(NULL)
+  , _releasedCallback(NULL)
+  , _pressedDurationCallback(NULL)
 {
   setup(pinIn, debDelay, pinInMode);
 }
+
+InputDebounce::~InputDebounce()
+{}
 
 void InputDebounce::setup(int8_t pinIn, unsigned long debDelay, PinInMode pinInMode)
 {
@@ -66,9 +72,17 @@ unsigned long InputDebounce::process(unsigned long now)
       _stateOn = _valueLast;
       if(_stateOn) {
         _stateOnCount++;
+        pressed();
+      }
+      else {
+        released();
       }
     }
-    return _stateOn ? now - _timeStamp : 0;
+    unsigned long duration = _stateOn ? now - _timeStamp : 0;
+    if(duration) {
+      pressedDuration(duration);
+    }
+    return duration;
   }
   return 0;
 }
@@ -76,4 +90,32 @@ unsigned long InputDebounce::process(unsigned long now)
 unsigned long InputDebounce::getStateOnCount() const
 {
   return _stateOnCount;
+}
+
+void InputDebounce::registerCallbacks(state_cb pressedCallback, state_cb releasedCallback, duration_cb pressedDurationCallback)
+{
+  _pressedCallback = pressedCallback;
+  _releasedCallback = releasedCallback;
+  _pressedDurationCallback = pressedDurationCallback;
+}
+
+void InputDebounce::pressed()
+{
+  if(_pressedCallback) {
+    _pressedCallback();
+  }
+}
+
+void InputDebounce::released()
+{
+  if(_releasedCallback) {
+    _releasedCallback();
+  }
+}
+
+void InputDebounce::pressedDuration(unsigned long duration)
+{
+  if(_pressedDurationCallback) {
+    _pressedDurationCallback(duration);
+  }
 }
