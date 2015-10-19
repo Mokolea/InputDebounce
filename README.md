@@ -13,7 +13,7 @@ Simple polling input debounce [Arduino](https://www.arduino.cc/) library.
 
 Available from the Arduino IDE [Library Manager](https://www.arduino.cc/en/Guide/Libraries)
 
-## Using
+## Usage
 **TODO...**
 For now, just see the examples [general](https://github.com/Mokolea/InputDebounce/blob/master/examples/Test_InputDebounce/Test_InputDebounce.ino),
 using [callbacks](https://github.com/Mokolea/InputDebounce/blob/master/examples/Test_InputDebounce_Callbacks/Test_InputDebounce_Callbacks.ino)
