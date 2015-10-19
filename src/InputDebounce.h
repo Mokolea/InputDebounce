@@ -15,8 +15,11 @@
 
 #define DEFAULT_INPUT_DEBOUNCE_DELAY   20   // [ms]
 
-typedef void (*state_cb)(void);
-typedef void (*duration_cb)(unsigned long);
+//namespace inputdebounce
+//{
+
+typedef void (*inputdebounce_state_cb)(void);
+typedef void (*inputdebounce_duration_cb)(unsigned long);
 
 class InputDebounce
 {
@@ -38,13 +41,13 @@ public:
   unsigned long process(unsigned long now); // poll button state, returns continuous pressed time duration if on (> debounce delay)
   unsigned long getStateOnCount() const;
   
-  void registerCallbacks(state_cb pressedCallback, state_cb releasedCallback, duration_cb pressedDurationCallback);
-
+  void registerCallbacks(inputdebounce_state_cb pressedCallback, inputdebounce_state_cb releasedCallback, inputdebounce_duration_cb pressedDurationCallback);
+  
 protected:
   virtual void pressed(); // called once for state change
   virtual void released(); // called once for state change
   virtual void pressedDuration(unsigned long duration); // still pressed state: continuous pressed time duration
-
+  
 private:
   // implicitly implemented, not to be used
   InputDebounce(const InputDebounce&);
@@ -59,10 +62,12 @@ private:
   bool _stateOn; // current on state (debounced)
   unsigned long _timeStamp; // last input value (state) change, start debounce time
   unsigned long _stateOnCount;
-
-  state_cb _pressedCallback;
-  state_cb _releasedCallback;
-  duration_cb _pressedDurationCallback;
+  
+  inputdebounce_state_cb _pressedCallback;
+  inputdebounce_state_cb _releasedCallback;
+  inputdebounce_duration_cb _pressedDurationCallback;
 };
+
+//} // namespace
 
 #endif // _INPUT_DEBOUNCE_H

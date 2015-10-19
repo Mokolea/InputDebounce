@@ -10,6 +10,9 @@
 
 #include "InputDebounce.h"
 
+//namespace inputdebounce
+//{
+
 InputDebounce::InputDebounce(int8_t pinIn, unsigned long debDelay, PinInMode pinInMode)
   : _pinIn(0)
   , _debDelay(0)
@@ -92,7 +95,7 @@ unsigned long InputDebounce::getStateOnCount() const
   return _stateOnCount;
 }
 
-void InputDebounce::registerCallbacks(state_cb pressedCallback, state_cb releasedCallback, duration_cb pressedDurationCallback)
+void InputDebounce::registerCallbacks(inputdebounce_state_cb pressedCallback, inputdebounce_state_cb releasedCallback, inputdebounce_duration_cb pressedDurationCallback)
 {
   _pressedCallback = pressedCallback;
   _releasedCallback = releasedCallback;
@@ -119,3 +122,5 @@ void InputDebounce::pressedDuration(unsigned long duration)
     _pressedDurationCallback(duration);
   }
 }
+
+//} // namespace

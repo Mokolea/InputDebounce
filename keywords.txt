@@ -15,3 +15,10 @@ InputDebounce	KEYWORD1
 setup	KEYWORD2
 process	KEYWORD2
 getStateOnCount	KEYWORD2
+registerCallbacks	KEYWORD2
+
+################################################################################
+# Constants (LITERAL1)
+################################################################################
+
+DEFAULT_INPUT_DEBOUNCE_DELAY	LITERAL1
