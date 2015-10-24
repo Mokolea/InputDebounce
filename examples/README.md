@@ -6,10 +6,10 @@ There are multiple ways to get the input state.
 Showing general usage...
 
 ## Test_InputDebounce_Callbacks (since v1.1.0)
-Using callback methods...
+Using registered callback functions...
 
 ## Test_InputDebounce_Inheritance (since v1.1.0)
-Using inheritance... by defining a subclass and override the methods `pressed()`, `released()` and `pressedDuration(unsigned int duration)`
+Using inheritance... by defining a subclass and override the methods `pressed()`, `released()` and `pressedDuration(unsigned long duration)`
 
 *GNU General Public License v2.0*
 
