@@ -1,6 +1,6 @@
 # Examples InputDebounce Arduino Library [![Build Status](https://travis-ci.org/Mokolea/InputDebounce.svg)](https://travis-ci.org/Mokolea/InputDebounce)
 
-**TODO...**
+There are multiple ways to get the input state.
 
 ## Test_InputDebounce
 Showing general usage...
@@ -9,7 +9,7 @@ Showing general usage...
 Using callback methods...
 
 ## Test_InputDebounce_Inheritance (since v1.1.0)
-Using inheritance...
+Using inheritance... by defining a subclass and override the methods `pressed()`, `released()` and `pressedDuration(unsigned int duration)`
 
 *GNU General Public License v2.0*
 
