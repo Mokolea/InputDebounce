@@ -15,7 +15,8 @@ Available from the Arduino IDE [Library Manager](https://www.arduino.cc/en/Guide
 
 ## Usage
 **TODO...**
-For now, just see the examples [general](https://github.com/Mokolea/InputDebounce/blob/master/examples/Test_InputDebounce/Test_InputDebounce.ino),
+For now, just see the [examples](https://github.com/Mokolea/InputDebounce/tree/master/examples):
+[general](https://github.com/Mokolea/InputDebounce/blob/master/examples/Test_InputDebounce/Test_InputDebounce.ino),
 using [callbacks](https://github.com/Mokolea/InputDebounce/blob/master/examples/Test_InputDebounce_Callbacks/Test_InputDebounce_Callbacks.ino)
 and using [inheritance](https://github.com/Mokolea/InputDebounce/blob/master/examples/Test_InputDebounce_Inheritance/Test_InputDebounce_Inheritance.ino)
 
