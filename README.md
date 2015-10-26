@@ -20,7 +20,7 @@ For now, just see the [examples](https://github.com/Mokolea/InputDebounce/tree/m
 using [callbacks](https://github.com/Mokolea/InputDebounce/blob/master/examples/Test_InputDebounce_Callbacks/Test_InputDebounce_Callbacks.ino)
 and using [inheritance](https://github.com/Mokolea/InputDebounce/blob/master/examples/Test_InputDebounce_Inheritance/Test_InputDebounce_Inheritance.ino)
 
-[![Release](https://img.shields.io/badge/InputDebounce-v1.1.0-blue.svg)](https://github.com/Mokolea/InputDebounce/releases)
+[![Release](https://img.shields.io/github/release/Mokolea/InputDebounce.svg)](https://github.com/Mokolea/InputDebounce/releases)
 
 *GNU General Public License v2.0*
 
