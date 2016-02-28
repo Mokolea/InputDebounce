@@ -1,0 +1,13 @@
+{
+    "name": "InputDebounce",
+    "keywords": "input, debounce, signal, input, output",
+    "description": "Simple polling input debounce Arduino library.",
+    "repository":
+    {
+      "type": "git",
+      "url": "https://github.com/Mokolea/InputDebounce.git"
+    },
+    "version": "1.1.0",
+    "frameworks": "arduino",
+    "platforms": "*"
+}
