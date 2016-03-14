@@ -13,7 +13,7 @@ script:
   #- build_main_platforms
   - build_platform uno
   #- build_platform due
-  - build_platform zero
+  #- build_platform zero
 
 notifications:
   email:
