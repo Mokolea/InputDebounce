@@ -23,6 +23,6 @@ For now, just see the [examples](https://github.com/Mokolea/InputDebounce/tree/m
 using [callbacks](https://github.com/Mokolea/InputDebounce/blob/master/examples/Test_InputDebounce_Callbacks/Test_InputDebounce_Callbacks.ino)
 and using [inheritance](https://github.com/Mokolea/InputDebounce/blob/master/examples/Test_InputDebounce_Inheritance/Test_InputDebounce_Inheritance.ino)
 
-*GNU General Public License v2.0*
+*Apache License 2.0*
 
 -- Mario

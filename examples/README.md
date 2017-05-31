@@ -11,6 +11,6 @@ Using registered callback functions...
 ## Test_InputDebounce_Inheritance (since v1.1.0)
 Using inheritance... by defining a subclass and override the methods `pressed()`, `released()` and `pressedDuration(unsigned long duration)`
 
-*GNU General Public License v2.0*
+*Apache License 2.0*
 
 -- Mario
