@@ -5,7 +5,7 @@
   https://github.com/Mokolea/InputDebounce
 
 
-  Copyright 2015 Mario Ban
+  Copyright 2017 Mario Ban
 
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
