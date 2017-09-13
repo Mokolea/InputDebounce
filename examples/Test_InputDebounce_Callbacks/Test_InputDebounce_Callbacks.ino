@@ -29,21 +29,21 @@ static const int pinSwitch = 2;
 
 static InputDebounce buttonTest; // not enabled yet, setup has to be called later
 
-void buttonTest_pressedCallback()
+void buttonTest_pressedCallback(uint8_t pinIn)
 {
   // handle pressed state
   digitalWrite(pinLED, HIGH); // turn the LED on
   Serial.println("HIGH");
 }
 
-void buttonTest_releasedCallback()
+void buttonTest_releasedCallback(uint8_t pinIn)
 {
   // handle released state
   digitalWrite(pinLED, LOW); // turn the LED off
   Serial.println("LOW");
 }
 
-void buttonTest_pressedDurationCallback(unsigned long duration)
+void buttonTest_pressedDurationCallback(uint8_t pinIn, unsigned long duration)
 {
   // handle still pressed state
   Serial.print("HIGH still pressed (");
