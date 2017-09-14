@@ -33,20 +33,26 @@ void buttonTest_pressedCallback(uint8_t pinIn)
 {
   // handle pressed state
   digitalWrite(pinLED, HIGH); // turn the LED on
-  Serial.println("HIGH");
+  Serial.print("HIGH (pin: ");
+  Serial.print(pinIn);
+  Serial.println(")");
 }
 
 void buttonTest_releasedCallback(uint8_t pinIn)
 {
   // handle released state
   digitalWrite(pinLED, LOW); // turn the LED off
-  Serial.println("LOW");
+  Serial.print("LOW (pin: ");
+  Serial.print(pinIn);
+  Serial.println(")");
 }
 
 void buttonTest_pressedDurationCallback(uint8_t pinIn, unsigned long duration)
 {
   // handle still pressed state
-  Serial.print("HIGH still pressed (");
+  Serial.print("HIGH (pin: ");
+  Serial.print(pinIn);
+  Serial.print(") still pressed (");
   Serial.print(duration);
   Serial.println("ms)");
 }
