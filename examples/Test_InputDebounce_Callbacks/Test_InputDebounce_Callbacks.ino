@@ -25,9 +25,11 @@
 #define BUTTON_DEBOUNCE_DELAY   20   // [ms]
 
 static const int pinLED = LED_BUILTIN; // 13
-static const int pinSwitch = 2;
+static const int pinSwitchA = 2;
+static const int pinSwitchB = 3;
 
-static InputDebounce buttonTest; // not enabled yet, setup has to be called later
+static InputDebounce buttonTestA; // not enabled yet, setup has to be called first, see setup() below
+static InputDebounce buttonTestB;
 
 void buttonTest_pressedCallback(uint8_t pinIn)
 {
@@ -65,19 +67,21 @@ void setup()
   // init serial
   Serial.begin(9600);
   
-  Serial.println("Test InputDebounce library, using callbacks");
+  Serial.println("Test InputDebounce library, using callback functions");
   
-  // register callbacks
-  buttonTest.registerCallbacks(buttonTest_pressedCallback, buttonTest_releasedCallback, buttonTest_pressedDurationCallback);
+  // register callback functions (shared, used by all buttons)
+  buttonTestA.registerCallbacks(buttonTest_pressedCallback, buttonTest_releasedCallback, buttonTest_pressedDurationCallback);
+  buttonTestB.registerCallbacks(buttonTest_pressedCallback, buttonTest_releasedCallback, buttonTest_pressedDurationCallback);
   
-  // setup input button (debounced)
-  buttonTest.setup(pinSwitch, BUTTON_DEBOUNCE_DELAY, InputDebounce::PIM_INT_PULL_UP_RES);
+  // setup input buttons (debounced)
+  buttonTestA.setup(pinSwitchA, BUTTON_DEBOUNCE_DELAY, InputDebounce::PIM_INT_PULL_UP_RES);
+  buttonTestB.setup(pinSwitchB, BUTTON_DEBOUNCE_DELAY, InputDebounce::PIM_INT_PULL_UP_RES);
   
   // examples
-  // buttonTest.registerCallbacks(buttonTest_pressedCallback, buttonTest_releasedCallback, NULL);
-  // buttonTest.setup(pinSwitch);
-  // buttonTest.setup(pinSwitch, DEFAULT_INPUT_DEBOUNCE_DELAY);
-  // buttonTest.setup(pinSwitch, BUTTON_DEBOUNCE_DELAY, InputDebounce::PIM_EXT_PULL_UP_RES);
+  // buttonTestA.registerCallbacks(buttonTest_pressedCallback, buttonTest_releasedCallback, NULL); // no continuous pressed-on time duration
+  // buttonTestA.setup(pinSwitchA);
+  // buttonTestA.setup(pinSwitchA, BUTTON_DEBOUNCE_DELAY);
+  // buttonTestA.setup(pinSwitchA, DEFAULT_INPUT_DEBOUNCE_DELAY, InputDebounce::PIM_EXT_PULL_UP_RES);
 }
 
 void loop()
@@ -85,7 +89,8 @@ void loop()
   unsigned long now = millis();
   
   // poll button state
-  buttonTest.process(now); // callbacks called in context of this function
+  buttonTestA.process(now); // callbacks called in context of this function
+  buttonTestB.process(now);
   
   delay(1); // [ms]
 }
