@@ -30,8 +30,8 @@
 //namespace inputdebounce
 //{
 
-typedef void (*inputdebounce_state_cb)(void);
-typedef void (*inputdebounce_duration_cb)(unsigned long);
+typedef void (*inputdebounce_state_cb)(uint8_t);
+typedef void (*inputdebounce_duration_cb)(uint8_t, unsigned long);
 
 class InputDebounce
 {

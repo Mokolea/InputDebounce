@@ -117,21 +117,21 @@ void InputDebounce::registerCallbacks(inputdebounce_state_cb pressedCallback, in
 void InputDebounce::pressed()
 {
   if(_pressedCallback) {
-    _pressedCallback();
+    _pressedCallback(_pinIn);
   }
 }
 
 void InputDebounce::released()
 {
   if(_releasedCallback) {
-    _releasedCallback();
+    _releasedCallback(_pinIn);
   }
 }
 
 void InputDebounce::pressedDuration(unsigned long duration)
 {
   if(_pressedDurationCallback) {
-    _pressedDurationCallback(duration);
+    _pressedDurationCallback(_pinIn, duration);
   }
 }
 
