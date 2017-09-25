@@ -75,7 +75,7 @@ void setup()
   
   // setup input buttons (debounced)
   buttonTestA.setup(pinSwitchA, BUTTON_DEBOUNCE_DELAY, InputDebounce::PIM_INT_PULL_UP_RES);
-  buttonTestB.setup(pinSwitchB, BUTTON_DEBOUNCE_DELAY, InputDebounce::PIM_INT_PULL_UP_RES);
+  buttonTestB.setup(pinSwitchB, BUTTON_DEBOUNCE_DELAY, InputDebounce::PIM_INT_PULL_UP_RES, 300); // single-shot pressed-on time duration callback
   
   // examples
   // buttonTestA.registerCallbacks(buttonTest_pressedCallback, buttonTest_releasedCallback, NULL); // no continuous pressed-on time duration

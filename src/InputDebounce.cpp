@@ -25,31 +25,34 @@
 //namespace inputdebounce
 //{
 
-InputDebounce::InputDebounce(int8_t pinIn, unsigned long debDelay, PinInMode pinInMode)
+InputDebounce::InputDebounce(int8_t pinIn, unsigned long debDelay, PinInMode pinInMode, unsigned long pressedDuration)
   : _pinIn(0)
   , _debDelay(0)
   , _pinInMode(PIM_INT_PULL_UP_RES)
+  , _pressedDuration(0)
   , _enabled(false)
   , _valueLast(false)
   , _stateOn(false)
   , _timeStamp(0)
   , _stateOnCount(0)
+  , _stateOnCountSingleShot(0)
   , _pressedCallback(NULL)
   , _releasedCallback(NULL)
   , _pressedDurationCallback(NULL)
 {
-  setup(pinIn, debDelay, pinInMode);
+  setup(pinIn, debDelay, pinInMode, pressedDuration);
 }
 
 InputDebounce::~InputDebounce()
 {}
 
-void InputDebounce::setup(int8_t pinIn, unsigned long debDelay, PinInMode pinInMode)
+void InputDebounce::setup(int8_t pinIn, unsigned long debDelay, PinInMode pinInMode, unsigned long pressedDuration)
 {
   if(pinIn >= 0) {
     _pinIn = pinIn;
     _debDelay = debDelay;
     _pinInMode = pinInMode;
+    _pressedDuration = pressedDuration;
     // initialize digital pin as an input
     if(_pinInMode == PIM_INT_PULL_UP_RES) {
       pinMode(_pinIn, INPUT_PULLUP);
@@ -95,7 +98,13 @@ unsigned long InputDebounce::process(unsigned long now)
     }
     unsigned long duration = _stateOn ? now - _timeStamp : 0;
     if(duration) {
-      pressedDuration(duration);
+      if(!_pressedDuration) {
+        pressedDuration(duration); // continuous
+      }
+      else if(duration >= _pressedDuration && _stateOnCountSingleShot != _stateOnCount) {
+        _stateOnCountSingleShot = _stateOnCount;
+        pressedDuration(duration); // single-shot
+      }
     }
     return duration;
   }
