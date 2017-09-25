@@ -8,7 +8,7 @@ Simple polling input debounce [Arduino](https://www.arduino.cc/) library.
 ## Facts
  - used for push-button like switches
  - delivers input value (state) after it has been stable (not flickering) for longer than the debounce period
- - delivers continuous pressed-on time duration [ms]
+ - delivers continuous or single-shot pressed-on time duration [ms]
  - handles input pin with:
     - external pull-down resistor
     - external pull-up resistor
@@ -19,8 +19,8 @@ Available from the Arduino IDE [Library Manager](https://www.arduino.cc/en/Guide
 ## Usage
 Just see the [examples](examples):
  - [general](examples/Test_InputDebounce/Test_InputDebounce.ino)
- - using [callback functions](examples/Test_InputDebounce_Callbacks/Test_InputDebounce_Callbacks.ino)
- - using [inheritance](examples/Test_InputDebounce_Inheritance/Test_InputDebounce_Inheritance.ino)
+ - using [callback functions](examples/Test_InputDebounce_Callbacks/Test_InputDebounce_Callbacks.ino) :white_check_mark: *preferred method*
+ - using [inheritance](examples/Test_InputDebounce_Inheritance/Test_InputDebounce_Inheritance.ino) :exclamation: *advanced*
 
 *Apache License 2.0*
 
