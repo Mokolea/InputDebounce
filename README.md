@@ -19,8 +19,8 @@ Available from the Arduino IDE [Library Manager](https://www.arduino.cc/en/Guide
 ## Usage
 Just see the [examples](examples):
  - [general](examples/Test_InputDebounce/Test_InputDebounce.ino)
- - using [callback functions](examples/Test_InputDebounce_Callbacks/Test_InputDebounce_Callbacks.ino) :white_check_mark: *preferred method*
- - using [inheritance](examples/Test_InputDebounce_Inheritance/Test_InputDebounce_Inheritance.ino) :exclamation: *advanced*
+ - using [callback functions](examples/Test_InputDebounce_Callbacks/Test_InputDebounce_Callbacks.ino) - :white_check_mark: *preferred method*
+ - using [inheritance](examples/Test_InputDebounce_Inheritance/Test_InputDebounce_Inheritance.ino) - *advanced*
 
 *Apache License 2.0*
 
