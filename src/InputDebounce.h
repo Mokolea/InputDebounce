@@ -53,6 +53,8 @@ public:
              PinInMode pinInMode = PIM_INT_PULL_UP_RES,
              unsigned long pressedDuration = 0);
   unsigned long process(unsigned long now); // poll button state, returns continuous pressed-on time duration if on (> debounce delay)
+  
+  uint8_t getPinIn() const;
   unsigned long getStateOnCount() const;
   
   void registerCallbacks(inputdebounce_state_cb pressedCallback, inputdebounce_state_cb releasedCallback, inputdebounce_duration_cb pressedDurationCallback);

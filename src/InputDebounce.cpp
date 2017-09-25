@@ -111,6 +111,11 @@ unsigned long InputDebounce::process(unsigned long now)
   return 0;
 }
 
+uint8_t InputDebounce::getPinIn() const
+{
+  return _pinIn;
+}
+
 unsigned long InputDebounce::getStateOnCount() const
 {
   return _stateOnCount;

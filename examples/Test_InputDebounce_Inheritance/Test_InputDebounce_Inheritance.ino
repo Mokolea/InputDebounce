@@ -25,13 +25,14 @@
 #define BUTTON_DEBOUNCE_DELAY   20   // [ms]
 
 static const int pinLED = LED_BUILTIN; // 13
-static const int pinSwitch = 2;
+static const int pinSwitchA = 2;
+static const int pinSwitchB = 3;
 
 class MyInputDebounce : public InputDebounce
 {
 public:
-  MyInputDebounce(int8_t pinIn = -1, unsigned long debDelay = DEFAULT_INPUT_DEBOUNCE_DELAY, PinInMode pinInMode = PIM_INT_PULL_UP_RES)
-    : InputDebounce(pinIn, debDelay, pinInMode)
+  MyInputDebounce(int8_t pinIn = -1, unsigned long debDelay = DEFAULT_INPUT_DEBOUNCE_DELAY, PinInMode pinInMode = PIM_INT_PULL_UP_RES, unsigned long pressedDuration = 0)
+    : InputDebounce(pinIn, debDelay, pinInMode, pressedDuration)
     , _pinLED(-1)
   {}
   virtual ~MyInputDebounce()
@@ -47,7 +48,9 @@ protected:
     if(_pinLED >= 0) {
       digitalWrite(_pinLED, HIGH); // turn the LED on
     }
-    Serial.println("HIGH");
+    Serial.print("HIGH (pin: ");
+    Serial.print(getPinIn());
+    Serial.println(")");
   }
   virtual void released()
   {
@@ -55,12 +58,16 @@ protected:
     if(_pinLED >= 0) {
       digitalWrite(_pinLED, LOW); // turn the LED off
     }
-    Serial.println("LOW");
+    Serial.print("LOW (pin: ");
+    Serial.print(getPinIn());
+    Serial.println(")");
   }
   virtual void pressedDuration(unsigned long duration)
   {
     // handle still pressed state
-    Serial.print("HIGH still pressed (");
+    Serial.print("HIGH (pin: ");
+    Serial.print(getPinIn());
+    Serial.print(") still pressed (");
     Serial.print(duration);
     Serial.println("ms)");
   }
@@ -68,7 +75,8 @@ private:
   int8_t _pinLED;
 };
 
-static MyInputDebounce buttonTest; // not enabled yet, setup has to be called later
+static MyInputDebounce buttonTestA; // not enabled yet, setup has to be called first, see setup() below
+static MyInputDebounce buttonTestB;
 
 void setup()
 {
@@ -80,14 +88,16 @@ void setup()
   
   Serial.println("Test InputDebounce library, using inheritance");
   
-  // setup input button (debounced)
-  buttonTest.setPinLED(pinLED);
-  buttonTest.setup(pinSwitch, BUTTON_DEBOUNCE_DELAY, InputDebounce::PIM_INT_PULL_UP_RES);
+  // setup input buttons (debounced)
+  buttonTestA.setPinLED(pinLED);
+  buttonTestA.setup(pinSwitchA, BUTTON_DEBOUNCE_DELAY, InputDebounce::PIM_INT_PULL_UP_RES);
+  buttonTestB.setPinLED(-1);
+  buttonTestB.setup(pinSwitchB, BUTTON_DEBOUNCE_DELAY, InputDebounce::PIM_INT_PULL_UP_RES, 300); // single-shot pressed-on time duration callback
   
   // examples
-  // buttonTest.setup(pinSwitch);
-  // buttonTest.setup(pinSwitch, DEFAULT_INPUT_DEBOUNCE_DELAY);
-  // buttonTest.setup(pinSwitch, BUTTON_DEBOUNCE_DELAY, InputDebounce::PIM_EXT_PULL_UP_RES);
+  // buttonTestA.setup(pinSwitchA);
+  // buttonTestA.setup(pinSwitchA, BUTTON_DEBOUNCE_DELAY);
+  // buttonTestA.setup(pinSwitchA, DEFAULT_INPUT_DEBOUNCE_DELAY, InputDebounce::PIM_EXT_PULL_UP_RES);
 }
 
 void loop()
@@ -95,7 +105,8 @@ void loop()
   unsigned long now = millis();
   
   // poll button state
-  buttonTest.process(now);
+  buttonTestA.process(now);
+  buttonTestB.process(now);
   
   delay(1); // [ms]
 }
