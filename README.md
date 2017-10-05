@@ -1,6 +1,6 @@
 # InputDebounce Arduino Library [![Build Status](https://travis-ci.org/Mokolea/InputDebounce.svg)](https://travis-ci.org/Mokolea/InputDebounce)
 
-Simple polling input debounce [Arduino](https://www.arduino.cc/) library.
+Simple polling input debounce [Arduino](https://www.arduino.cc/) library. Also usable in the [PlatformIO](http://platformio.org/) ecosystem.
 
 [![Release](https://img.shields.io/github/release/Mokolea/InputDebounce.svg)](https://github.com/Mokolea/InputDebounce/releases)
 ![License](https://img.shields.io/github/license/Mokolea/InputDebounce.svg)
@@ -14,7 +14,7 @@ Simple polling input debounce [Arduino](https://www.arduino.cc/) library.
     - external pull-up resistor
     - internal pull-up resistor (default)
 
-Available from the Arduino IDE [Library Manager](https://www.arduino.cc/en/Guide/Libraries)
+Available from the Arduino IDE [Library Manager](https://www.arduino.cc/en/Guide/Libraries) and for PlatformIO as [library](http://platformio.org/lib/show/123/InputDebounce) (Id #123).
 
 ## Usage
 Just see the [examples](examples):
