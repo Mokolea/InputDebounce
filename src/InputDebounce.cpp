@@ -25,10 +25,11 @@
 //namespace inputdebounce
 //{
 
-InputDebounce::InputDebounce(int8_t pinIn, unsigned long debDelay, PinInMode pinInMode, unsigned long pressedDuration)
+InputDebounce::InputDebounce(int8_t pinIn, unsigned long debDelay, PinInMode pinInMode, unsigned long pressedDuration, SwitchType switchType)
   : _pinIn(0)
   , _debDelay(0)
   , _pinInMode(PIM_INT_PULL_UP_RES)
+  , _switchType(NO)
   , _pressedDuration(0)
   , _enabled(false)
   , _valueLast(false)
@@ -46,17 +47,18 @@ InputDebounce::InputDebounce(int8_t pinIn, unsigned long debDelay, PinInMode pin
 InputDebounce::~InputDebounce()
 {}
 
-void InputDebounce::setup(int8_t pinIn, unsigned long debDelay, PinInMode pinInMode, unsigned long pressedDuration)
+void InputDebounce::setup(int8_t pinIn, unsigned long debDelay, PinInMode pinInMode, unsigned long pressedDuration, SwitchType switchType)
 {
   if(pinIn >= 0) {
     _pinIn = pinIn;
     _debDelay = debDelay;
     _pinInMode = pinInMode;
     _pressedDuration = pressedDuration;
+    _switchType = switchType;
     // initialize digital pin as an input
     if(_pinInMode == PIM_INT_PULL_UP_RES) {
       pinMode(_pinIn, INPUT_PULLUP);
-    }
+    } 
     else {
       pinMode(_pinIn, INPUT);
     }
@@ -75,6 +77,10 @@ unsigned long InputDebounce::process(unsigned long now)
   bool value = digitalRead(_pinIn) ? true : false; // LOW (with pull-up res) when button pressed (on)
   // adjust value pressed (on)
   if(_pinInMode != PIM_EXT_PULL_DOWN_RES) {
+    value = !value;
+  }
+  // if NC, invert
+  if(_switchType == NC){
     value = !value;
   }
   // check if input value changed

@@ -13,6 +13,9 @@ Simple polling input debounce [Arduino](https://www.arduino.cc/) library. Also u
     - external pull-down resistor
     - external pull-up resistor
     - internal pull-up resistor (default)
+ - handles switches with:
+    - Normally Open
+    - Normally Closed
 
 Available from the Arduino IDE [Library Manager](https://www.arduino.cc/en/Guide/Libraries) and for PlatformIO as [library](http://platformio.org/lib/show/123/InputDebounce) (Id #123).
 
