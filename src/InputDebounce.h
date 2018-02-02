@@ -39,25 +39,25 @@ public:
   enum PinInMode {
     PIM_EXT_PULL_DOWN_RES,
     PIM_EXT_PULL_UP_RES,
-    PIM_INT_PULL_UP_RES,
+    PIM_INT_PULL_UP_RES
   };
-  enum SwitchType{
-    NO,
-    NC
+  enum SwitchType {
+    ST_NO,
+    ST_NC
   };
   
   InputDebounce(int8_t pinIn = -1, // set input pin >= 0 to enable --> calls setup
                 unsigned long debDelay = DEFAULT_INPUT_DEBOUNCE_DELAY,
                 PinInMode pinInMode = PIM_INT_PULL_UP_RES,
-                unsigned long pressedDuration = 0,
-                SwitchType switchType = NO); // pressed-on time duration: 0 continuous; >0 single-shot [ms]
+                unsigned long pressedDuration = 0, // pressed-on time duration: 0 continuous; >0 single-shot [ms]
+                SwitchType switchType = ST_NO);
   virtual ~InputDebounce();
   
   void setup(int8_t pinIn,
              unsigned long debDelay = DEFAULT_INPUT_DEBOUNCE_DELAY,
              PinInMode pinInMode = PIM_INT_PULL_UP_RES,
              unsigned long pressedDuration = 0,
-             SwitchType switchType = NO);
+             SwitchType switchType = ST_NO);
   unsigned long process(unsigned long now); // poll button state, returns continuous pressed-on time duration if on (> debounce delay)
   
   uint8_t getPinIn() const;
@@ -78,8 +78,8 @@ private:
   uint8_t _pinIn;
   unsigned long _debDelay;
   PinInMode _pinInMode;
-  SwitchType _switchType;
   unsigned long _pressedDuration;
+  SwitchType _switchType;
   
   bool _enabled;
   bool _valueLast; // last input value

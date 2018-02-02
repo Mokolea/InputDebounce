@@ -29,8 +29,8 @@ InputDebounce::InputDebounce(int8_t pinIn, unsigned long debDelay, PinInMode pin
   : _pinIn(0)
   , _debDelay(0)
   , _pinInMode(PIM_INT_PULL_UP_RES)
-  , _switchType(NO)
   , _pressedDuration(0)
+  , _switchType(ST_NO)
   , _enabled(false)
   , _valueLast(false)
   , _stateOn(false)
@@ -58,7 +58,7 @@ void InputDebounce::setup(int8_t pinIn, unsigned long debDelay, PinInMode pinInM
     // initialize digital pin as an input
     if(_pinInMode == PIM_INT_PULL_UP_RES) {
       pinMode(_pinIn, INPUT_PULLUP);
-    } 
+    }
     else {
       pinMode(_pinIn, INPUT);
     }
@@ -80,7 +80,7 @@ unsigned long InputDebounce::process(unsigned long now)
     value = !value;
   }
   // if NC, invert
-  if(_switchType == NC){
+  if(_switchType == ST_NC) {
     value = !value;
   }
   // check if input value changed
