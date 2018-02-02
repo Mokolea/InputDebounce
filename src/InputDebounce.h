@@ -95,5 +95,4 @@ private:
 
 //} // namespace
 
-
 #endif // _INPUT_DEBOUNCE_H
