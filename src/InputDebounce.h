@@ -5,7 +5,7 @@
   https://github.com/Mokolea/InputDebounce
 
 
-  Copyright 2017 Mario Ban
+  Copyright 2018 Mario Ban
 
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
@@ -42,22 +42,22 @@ public:
     PIM_INT_PULL_UP_RES
   };
   enum SwitchType {
-    ST_NO,
-    ST_NC
+    ST_NORMALLY_OPEN,
+    ST_NORMALLY_CLOSED
   };
   
   InputDebounce(int8_t pinIn = -1, // set input pin >= 0 to enable --> calls setup
                 unsigned long debDelay = DEFAULT_INPUT_DEBOUNCE_DELAY,
                 PinInMode pinInMode = PIM_INT_PULL_UP_RES,
                 unsigned long pressedDuration = 0, // pressed-on time duration: 0 continuous; >0 single-shot [ms]
-                SwitchType switchType = ST_NO);
+                SwitchType switchType = ST_NORMALLY_OPEN);
   virtual ~InputDebounce();
   
   void setup(int8_t pinIn,
              unsigned long debDelay = DEFAULT_INPUT_DEBOUNCE_DELAY,
              PinInMode pinInMode = PIM_INT_PULL_UP_RES,
              unsigned long pressedDuration = 0,
-             SwitchType switchType = ST_NO);
+             SwitchType switchType = ST_NORMALLY_OPEN);
   unsigned long process(unsigned long now); // poll button state, returns continuous pressed-on time duration if on (> debounce delay)
   
   uint8_t getPinIn() const;
@@ -94,5 +94,6 @@ private:
 };
 
 //} // namespace
+
 
 #endif // _INPUT_DEBOUNCE_H

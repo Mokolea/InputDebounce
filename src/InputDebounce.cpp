@@ -5,7 +5,7 @@
   https://github.com/Mokolea/InputDebounce
 
 
-  Copyright 2017 Mario Ban
+  Copyright 2018 Mario Ban
 
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
@@ -30,7 +30,7 @@ InputDebounce::InputDebounce(int8_t pinIn, unsigned long debDelay, PinInMode pin
   , _debDelay(0)
   , _pinInMode(PIM_INT_PULL_UP_RES)
   , _pressedDuration(0)
-  , _switchType(ST_NO)
+  , _switchType(ST_NORMALLY_OPEN)
   , _enabled(false)
   , _valueLast(false)
   , _stateOn(false)
@@ -79,8 +79,8 @@ unsigned long InputDebounce::process(unsigned long now)
   if(_pinInMode != PIM_EXT_PULL_DOWN_RES) {
     value = !value;
   }
-  // if NC, invert
-  if(_switchType == ST_NC) {
+  // handle switch-type
+  if(_switchType == ST_NORMALLY_CLOSED) {
     value = !value;
   }
   // check if input value changed
