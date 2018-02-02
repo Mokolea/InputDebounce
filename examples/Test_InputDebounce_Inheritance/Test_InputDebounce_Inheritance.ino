@@ -5,7 +5,7 @@
   https://github.com/Mokolea/InputDebounce
 
 
-  Copyright 2017 Mario Ban
+  Copyright 2018 Mario Ban
 
   Licensed under the Apache License, Version 2.0 (the "License");
   you may not use this file except in compliance with the License.
@@ -98,6 +98,7 @@ void setup()
   // buttonTestA.setup(pinSwitchA);
   // buttonTestA.setup(pinSwitchA, BUTTON_DEBOUNCE_DELAY);
   // buttonTestA.setup(pinSwitchA, DEFAULT_INPUT_DEBOUNCE_DELAY, InputDebounce::PIM_EXT_PULL_UP_RES);
+  // buttonTestA.setup(pinSwitchA, BUTTON_DEBOUNCE_DELAY, InputDebounce::PIM_INT_PULL_UP_RES, 0, InputDebounce::ST_NORMALLY_CLOSED); // switch-type normally closed
 }
 
 void loop()
