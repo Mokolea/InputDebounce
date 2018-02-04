@@ -3,7 +3,7 @@
 Simple polling input debounce [Arduino](https://www.arduino.cc/) library. Also usable in the [PlatformIO](http://platformio.org/) ecosystem.
 
 [![Release](https://img.shields.io/github/release/Mokolea/InputDebounce.svg)](https://github.com/Mokolea/InputDebounce/releases)
-![License](https://img.shields.io/github/license/Mokolea/InputDebounce.svg)
+[![License](https://img.shields.io/github/license/Mokolea/InputDebounce.svg)](LICENSE)
 
 ## Facts
  - used for push-button like switches
