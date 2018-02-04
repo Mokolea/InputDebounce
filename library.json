@@ -8,6 +8,7 @@
       "url": "https://github.com/Mokolea/InputDebounce.git"
     },
     "version": "1.5.0",
+    "license": "Apache-2.0",
     "frameworks": "arduino",
     "platforms": "*"
 }
