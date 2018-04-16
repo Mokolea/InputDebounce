@@ -54,9 +54,19 @@ void buttonTest_pressedDurationCallback(uint8_t pinIn, unsigned long duration)
   // handle still pressed state
   Serial.print("HIGH (pin: ");
   Serial.print(pinIn);
-  Serial.print(") still pressed (");
+  Serial.print(") still pressed, duration ");
   Serial.print(duration);
-  Serial.println("ms)");
+  Serial.println("ms");
+}
+
+void buttonTest_releasedDurationCallback(uint8_t pinIn, unsigned long duration)
+{
+  // handle released state
+  Serial.print("LOW (pin: ");
+  Serial.print(pinIn);
+  Serial.print("), duration ");
+  Serial.print(duration);
+  Serial.println("ms");
 }
 
 void setup()
@@ -70,15 +80,15 @@ void setup()
   Serial.println("Test InputDebounce library, using callback functions");
   
   // register callback functions (shared, used by all buttons)
-  buttonTestA.registerCallbacks(buttonTest_pressedCallback, buttonTest_releasedCallback, buttonTest_pressedDurationCallback);
-  buttonTestB.registerCallbacks(buttonTest_pressedCallback, buttonTest_releasedCallback, buttonTest_pressedDurationCallback);
+  buttonTestA.registerCallbacks(buttonTest_pressedCallback, buttonTest_releasedCallback, buttonTest_pressedDurationCallback, buttonTest_releasedDurationCallback);
+  buttonTestB.registerCallbacks(buttonTest_pressedCallback, buttonTest_releasedCallback, buttonTest_pressedDurationCallback, buttonTest_releasedDurationCallback);
   
   // setup input buttons (debounced)
   buttonTestA.setup(pinSwitchA, BUTTON_DEBOUNCE_DELAY, InputDebounce::PIM_INT_PULL_UP_RES);
   buttonTestB.setup(pinSwitchB, BUTTON_DEBOUNCE_DELAY, InputDebounce::PIM_INT_PULL_UP_RES, 300); // single-shot pressed-on time duration callback
   
   // examples
-  // buttonTestA.registerCallbacks(buttonTest_pressedCallback, buttonTest_releasedCallback, NULL); // no continuous pressed-on time duration
+  // buttonTestA.registerCallbacks(buttonTest_pressedCallback, NULL, NULL, buttonTest_releasedDurationCallback); // no continuous pressed-on time duration, ...
   // buttonTestA.setup(pinSwitchA);
   // buttonTestA.setup(pinSwitchA, BUTTON_DEBOUNCE_DELAY);
   // buttonTestA.setup(pinSwitchA, DEFAULT_INPUT_DEBOUNCE_DELAY, InputDebounce::PIM_EXT_PULL_UP_RES);

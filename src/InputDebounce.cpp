@@ -37,9 +37,11 @@ InputDebounce::InputDebounce(int8_t pinIn, unsigned long debDelay, PinInMode pin
   , _timeStamp(0)
   , _stateOnCount(0)
   , _stateOnCountSingleShot(0)
+  , _currentPressedDuration(0)
   , _pressedCallback(NULL)
   , _releasedCallback(NULL)
   , _pressedDurationCallback(NULL)
+  , _releasedDurationCallback(NULL)
 {
   setup(pinIn, debDelay, pinInMode, pressedDuration, switchType);
 }
@@ -100,10 +102,12 @@ unsigned long InputDebounce::process(unsigned long now)
       }
       else {
         released();
+        releasedDuration(_currentPressedDuration);
       }
     }
     unsigned long duration = _stateOn ? now - _timeStamp : 0;
     if(duration) {
+      _currentPressedDuration = duration;
       if(!_pressedDuration) {
         pressedDuration(duration); // continuous
       }
@@ -127,11 +131,13 @@ unsigned long InputDebounce::getStateOnCount() const
   return _stateOnCount;
 }
 
-void InputDebounce::registerCallbacks(inputdebounce_state_cb pressedCallback, inputdebounce_state_cb releasedCallback, inputdebounce_duration_cb pressedDurationCallback)
+void InputDebounce::registerCallbacks(inputdebounce_state_cb pressedCallback, inputdebounce_state_cb releasedCallback,
+                                      inputdebounce_duration_cb pressedDurationCallback, inputdebounce_duration_cb releasedDurationCallback)
 {
   _pressedCallback = pressedCallback;
   _releasedCallback = releasedCallback;
   _pressedDurationCallback = pressedDurationCallback;
+  _releasedDurationCallback = releasedDurationCallback;
 }
 
 void InputDebounce::pressed()
@@ -152,6 +158,13 @@ void InputDebounce::pressedDuration(unsigned long duration)
 {
   if(_pressedDurationCallback) {
     _pressedDurationCallback(_pinIn, duration);
+  }
+}
+
+void InputDebounce::releasedDuration(unsigned long duration)
+{
+  if(_releasedDurationCallback) {
+    _releasedDurationCallback(_pinIn, duration);
   }
 }
 

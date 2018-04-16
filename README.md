@@ -9,6 +9,7 @@ Simple polling input debounce [Arduino](https://www.arduino.cc/) library. Also u
  - used for push-button like switches
  - delivers input value (state) after it has been stable (not flickering) for longer than the debounce period
  - delivers continuous or single-shot pressed-on time duration [ms]
+ - delivers pressed-on time duration on release [ms]
  - handles input pin with:
     - external pull-down resistor
     - external pull-up resistor

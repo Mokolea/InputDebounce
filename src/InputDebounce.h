@@ -58,17 +58,22 @@ public:
              PinInMode pinInMode = PIM_INT_PULL_UP_RES,
              unsigned long pressedDuration = 0,
              SwitchType switchType = ST_NORMALLY_OPEN);
+
   unsigned long process(unsigned long now); // poll button state, returns continuous pressed-on time duration if on (> debounce delay)
   
   uint8_t getPinIn() const;
   unsigned long getStateOnCount() const;
   
-  void registerCallbacks(inputdebounce_state_cb pressedCallback, inputdebounce_state_cb releasedCallback, inputdebounce_duration_cb pressedDurationCallback);
+  void registerCallbacks(inputdebounce_state_cb pressedCallback,
+                         inputdebounce_state_cb releasedCallback,
+                         inputdebounce_duration_cb pressedDurationCallback, // still pressed state: continuous or single-shot pressed-on time duration [ms]
+                         inputdebounce_duration_cb releasedDurationCallback); // pressed-on time duration on release [ms]
   
 protected:
   virtual void pressed(); // called once for state change
   virtual void released(); // called once for state change
-  virtual void pressedDuration(unsigned long duration); // still pressed state: continuous pressed-on time duration
+  virtual void pressedDuration(unsigned long duration); // still pressed state: continuous or single-shot pressed-on time duration [ms]
+  virtual void releasedDuration(unsigned long duration); // pressed-on time duration on release [ms]
   
 private:
   // implicitly implemented, not to be used
@@ -87,10 +92,12 @@ private:
   unsigned long _timeStamp; // last input value (state) change, start debounce time
   unsigned long _stateOnCount;
   unsigned long _stateOnCountSingleShot;
+  unsigned long _currentPressedDuration;
   
   inputdebounce_state_cb _pressedCallback;
   inputdebounce_state_cb _releasedCallback;
   inputdebounce_duration_cb _pressedDurationCallback;
+  inputdebounce_duration_cb _releasedDurationCallback;
 };
 
 //} // namespace
