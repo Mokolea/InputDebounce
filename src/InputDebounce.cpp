@@ -41,7 +41,7 @@ InputDebounce::InputDebounce(int8_t pinIn, unsigned long debDelay, PinInMode pin
   , _releasedCallback(NULL)
   , _pressedDurationCallback(NULL)
 {
-  setup(pinIn, debDelay, pinInMode, pressedDuration);
+  setup(pinIn, debDelay, pinInMode, pressedDuration, switchType);
 }
 
 InputDebounce::~InputDebounce()
