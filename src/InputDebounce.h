@@ -46,15 +46,15 @@ public:
     ST_NORMALLY_CLOSED
   };
   
-  InputDebounce(int8_t pinIn = -1, // set input pin >= 0 to enable --> calls setup
-                unsigned long debDelay = DEFAULT_INPUT_DEBOUNCE_DELAY,
+  explicit InputDebounce(int8_t pinIn = -1, // set input pin >= 0 to enable --> calls setup
+                unsigned long debounceDelay = DEFAULT_INPUT_DEBOUNCE_DELAY,
                 PinInMode pinInMode = PIM_INT_PULL_UP_RES,
                 unsigned long pressedDuration = 0, // pressed-on time duration: 0 continuous; >0 single-shot [ms]
                 SwitchType switchType = ST_NORMALLY_OPEN);
   virtual ~InputDebounce();
   
   void setup(int8_t pinIn,
-             unsigned long debDelay = DEFAULT_INPUT_DEBOUNCE_DELAY,
+             unsigned long debounceDelay = DEFAULT_INPUT_DEBOUNCE_DELAY,
              PinInMode pinInMode = PIM_INT_PULL_UP_RES,
              unsigned long pressedDuration = 0,
              SwitchType switchType = ST_NORMALLY_OPEN);
@@ -81,7 +81,7 @@ private:
   InputDebounce& operator=(const InputDebounce&);
   
   uint8_t _pinIn;
-  unsigned long _debDelay;
+  unsigned long _debounceDelay;
   PinInMode _pinInMode;
   unsigned long _pressedDuration;
   SwitchType _switchType;

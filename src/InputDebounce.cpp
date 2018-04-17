@@ -25,9 +25,9 @@
 //namespace inputdebounce
 //{
 
-InputDebounce::InputDebounce(int8_t pinIn, unsigned long debDelay, PinInMode pinInMode, unsigned long pressedDuration, SwitchType switchType)
+InputDebounce::InputDebounce(int8_t pinIn, unsigned long debounceDelay, PinInMode pinInMode, unsigned long pressedDuration, SwitchType switchType)
   : _pinIn(0)
-  , _debDelay(0)
+  , _debounceDelay(0)
   , _pinInMode(PIM_INT_PULL_UP_RES)
   , _pressedDuration(0)
   , _switchType(ST_NORMALLY_OPEN)
@@ -43,17 +43,17 @@ InputDebounce::InputDebounce(int8_t pinIn, unsigned long debDelay, PinInMode pin
   , _pressedDurationCallback(NULL)
   , _releasedDurationCallback(NULL)
 {
-  setup(pinIn, debDelay, pinInMode, pressedDuration, switchType);
+  setup(pinIn, debounceDelay, pinInMode, pressedDuration, switchType);
 }
 
 InputDebounce::~InputDebounce()
 {}
 
-void InputDebounce::setup(int8_t pinIn, unsigned long debDelay, PinInMode pinInMode, unsigned long pressedDuration, SwitchType switchType)
+void InputDebounce::setup(int8_t pinIn, unsigned long debounceDelay, PinInMode pinInMode, unsigned long pressedDuration, SwitchType switchType)
 {
   if(pinIn >= 0) {
     _pinIn = pinIn;
-    _debDelay = debDelay;
+    _debounceDelay = debounceDelay;
     _pinInMode = pinInMode;
     _pressedDuration = pressedDuration;
     _switchType = switchType;
@@ -92,7 +92,7 @@ unsigned long InputDebounce::process(unsigned long now)
     return 0;
   }
   // wait debouncing time
-  if(now - _timeStamp > _debDelay) {
+  if(now - _timeStamp > _debounceDelay) {
     // input value (state) has been stable longer than the debounce period
     if(_stateOn != _valueLast) {
       _stateOn = _valueLast;
