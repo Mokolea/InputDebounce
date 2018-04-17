@@ -49,7 +49,7 @@ public:
   explicit InputDebounce(int8_t pinIn = -1, // set input pin >= 0 to enable --> calls setup
                 unsigned long debounceDelay = DEFAULT_INPUT_DEBOUNCE_DELAY,
                 PinInMode pinInMode = PIM_INT_PULL_UP_RES,
-                unsigned long pressedDurationMode = 0, // pressed-on time duration: 0 continuous; >0 single-shot [ms]
+                unsigned long pressedDurationMode = 0, // pressed-on time duration mode: 0 continuous; >0 single-shot threshold [ms]
                 SwitchType switchType = ST_NORMALLY_OPEN);
   virtual ~InputDebounce();
   
@@ -58,19 +58,19 @@ public:
              PinInMode pinInMode = PIM_INT_PULL_UP_RES,
              unsigned long pressedDurationMode = 0,
              SwitchType switchType = ST_NORMALLY_OPEN);
-
-  unsigned long process(unsigned long now); // poll button state, returns continuous pressed-on time duration if on (> debounce delay)
+  
+  unsigned long process(unsigned long now); // poll button state, returns continuous pressed-on time duration if pressed state (> debounce delay)
   
   uint8_t getPinIn() const;
   unsigned long getDebounceDelay() const;
   InputDebounce::PinInMode getPinInMode() const;
   unsigned long getPressedDurationMode() const;
   InputDebounce::SwitchType getSwitchType() const;
-
+  
   bool isEnabled() const;
   bool isPressed() const;
   bool isReleased() const;
-  unsigned long getStateOnCount() const;
+  unsigned long getStatePressedCount() const;
   unsigned long getCurrentPressedDuration() const; // if currently in pressed state
   unsigned long getLastPressedDuration() const; // if currently in released state
   
@@ -98,10 +98,10 @@ private:
   
   bool _enabled;
   bool _valueLast; // last input value
-  bool _stateOn; // current on state (debounced)
+  bool _statePressed; // current pressed/released state (debounced)
   unsigned long _timeStamp; // last input value (state) change, start debounce time
-  unsigned long _stateOnCount;
-  unsigned long _stateOnCountSingleShot;
+  unsigned long _statePressedCount;
+  unsigned long _statePressedCountSingleShot;
   unsigned long _currentPressedDuration;
   
   inputdebounce_state_cb _pressedCallback;

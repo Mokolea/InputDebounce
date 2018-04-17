@@ -33,10 +33,10 @@ InputDebounce::InputDebounce(int8_t pinIn, unsigned long debounceDelay, PinInMod
   , _switchType(ST_NORMALLY_OPEN)
   , _enabled(false)
   , _valueLast(false)
-  , _stateOn(false)
+  , _statePressed(false)
   , _timeStamp(0)
-  , _stateOnCount(0)
-  , _stateOnCountSingleShot(0)
+  , _statePressedCount(0)
+  , _statePressedCountSingleShot(0)
   , _currentPressedDuration(0)
   , _pressedCallback(NULL)
   , _releasedCallback(NULL)
@@ -94,10 +94,10 @@ unsigned long InputDebounce::process(unsigned long now)
   // wait debouncing time
   if(now - _timeStamp > _debounceDelay) {
     // input value (state) has been stable longer than the debounce period
-    if(_stateOn != _valueLast) {
-      _stateOn = _valueLast;
-      if(_stateOn) {
-        _stateOnCount++;
+    if(_statePressed != _valueLast) {
+      _statePressed = _valueLast;
+      if(_statePressed) {
+        _statePressedCount++;
         pressed();
       }
       else {
@@ -105,14 +105,14 @@ unsigned long InputDebounce::process(unsigned long now)
         releasedDuration(_currentPressedDuration);
       }
     }
-    unsigned long duration = _stateOn ? now - _timeStamp : 0;
+    unsigned long duration = _statePressed ? now - _timeStamp : 0;
     if(duration) {
       _currentPressedDuration = duration;
       if(!_pressedDurationMode) {
         pressedDuration(duration); // continuous
       }
-      else if(duration >= _pressedDurationMode && _stateOnCountSingleShot != _stateOnCount) {
-        _stateOnCountSingleShot = _stateOnCount;
+      else if(duration >= _pressedDurationMode && _statePressedCountSingleShot != _statePressedCount) {
+        _statePressedCountSingleShot = _statePressedCount;
         pressedDuration(duration); // single-shot
       }
     }
@@ -153,27 +153,27 @@ bool InputDebounce::isEnabled() const
 
 bool InputDebounce::isPressed() const
 {
-  return _stateOn;
+  return _statePressed;
 }
 
 bool InputDebounce::isReleased() const
 {
-  return !_stateOn;
+  return !_statePressed;
 }
 
-unsigned long InputDebounce::getStateOnCount() const
+unsigned long InputDebounce::getStatePressedCount() const
 {
-  return _stateOnCount;
+  return _statePressedCount;
 }
 
 unsigned long InputDebounce::getCurrentPressedDuration() const
 {
-  return _stateOn ? _currentPressedDuration : 0;
+  return _statePressed ? _currentPressedDuration : 0;
 }
 
 unsigned long InputDebounce::getLastPressedDuration() const
 {
-  return !_stateOn ? _currentPressedDuration : 0;
+  return !_statePressed ? _currentPressedDuration : 0;
 }
 
 void InputDebounce::registerCallbacks(inputdebounce_state_cb pressedCallback, inputdebounce_state_cb releasedCallback,
