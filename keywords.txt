@@ -14,7 +14,17 @@ InputDebounce	KEYWORD1
 
 setup	KEYWORD2
 process	KEYWORD2
-getStateOnCount	KEYWORD2
+getPinIn	KEYWORD2
+getDebounceDelay	KEYWORD2
+getPinInMode	KEYWORD2
+getPressedDurationMode	KEYWORD2
+getSwitchType	KEYWORD2
+isEnabled	KEYWORD2
+isPressed	KEYWORD2
+isReleased	KEYWORD2
+getStatePressedCount	KEYWORD2
+getCurrentPressedDuration	KEYWORD2
+getLastPressedDuration	KEYWORD2
 registerCallbacks	KEYWORD2
 
 ################################################################################

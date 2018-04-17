@@ -63,7 +63,7 @@ void loop()
     // save current on-time (button pressed), to be used when released
     buttonTest_OnTimeLast = buttonTest_OnTime;
     // check for state change
-    unsigned int count = buttonTest.getStateOnCount();
+    unsigned int count = buttonTest.getStatePressedCount();
     if(buttonTest_StateOnCount != count) {
       buttonTest_StateOnCount = count;
       // handle pressed state

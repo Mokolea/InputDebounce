@@ -67,9 +67,18 @@ protected:
     // handle still pressed state
     Serial.print("HIGH (pin: ");
     Serial.print(getPinIn());
-    Serial.print(") still pressed (");
+    Serial.print(") still pressed, duration ");
     Serial.print(duration);
-    Serial.println("ms)");
+    Serial.println("ms");
+  }
+  virtual void releasedDuration(unsigned long duration)
+  {
+    // handle released state
+    Serial.print("LOW (pin: ");
+    Serial.print(getPinIn());
+    Serial.print("), duration ");
+    Serial.print(duration);
+    Serial.println("ms");
   }
 private:
   int8_t _pinLED;
