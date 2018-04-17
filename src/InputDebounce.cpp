@@ -25,11 +25,11 @@
 //namespace inputdebounce
 //{
 
-InputDebounce::InputDebounce(int8_t pinIn, unsigned long debounceDelay, PinInMode pinInMode, unsigned long pressedDuration, SwitchType switchType)
+InputDebounce::InputDebounce(int8_t pinIn, unsigned long debounceDelay, PinInMode pinInMode, unsigned long pressedDurationMode, SwitchType switchType)
   : _pinIn(0)
   , _debounceDelay(0)
   , _pinInMode(PIM_INT_PULL_UP_RES)
-  , _pressedDuration(0)
+  , _pressedDurationMode(0)
   , _switchType(ST_NORMALLY_OPEN)
   , _enabled(false)
   , _valueLast(false)
@@ -43,19 +43,19 @@ InputDebounce::InputDebounce(int8_t pinIn, unsigned long debounceDelay, PinInMod
   , _pressedDurationCallback(NULL)
   , _releasedDurationCallback(NULL)
 {
-  setup(pinIn, debounceDelay, pinInMode, pressedDuration, switchType);
+  setup(pinIn, debounceDelay, pinInMode, pressedDurationMode, switchType);
 }
 
 InputDebounce::~InputDebounce()
 {}
 
-void InputDebounce::setup(int8_t pinIn, unsigned long debounceDelay, PinInMode pinInMode, unsigned long pressedDuration, SwitchType switchType)
+void InputDebounce::setup(int8_t pinIn, unsigned long debounceDelay, PinInMode pinInMode, unsigned long pressedDurationMode, SwitchType switchType)
 {
   if(pinIn >= 0) {
     _pinIn = pinIn;
     _debounceDelay = debounceDelay;
     _pinInMode = pinInMode;
-    _pressedDuration = pressedDuration;
+    _pressedDurationMode = pressedDurationMode;
     _switchType = switchType;
     // initialize digital pin as an input
     if(_pinInMode == PIM_INT_PULL_UP_RES) {
@@ -108,10 +108,10 @@ unsigned long InputDebounce::process(unsigned long now)
     unsigned long duration = _stateOn ? now - _timeStamp : 0;
     if(duration) {
       _currentPressedDuration = duration;
-      if(!_pressedDuration) {
+      if(!_pressedDurationMode) {
         pressedDuration(duration); // continuous
       }
-      else if(duration >= _pressedDuration && _stateOnCountSingleShot != _stateOnCount) {
+      else if(duration >= _pressedDurationMode && _stateOnCountSingleShot != _stateOnCount) {
         _stateOnCountSingleShot = _stateOnCount;
         pressedDuration(duration); // single-shot
       }
@@ -124,6 +124,26 @@ unsigned long InputDebounce::process(unsigned long now)
 uint8_t InputDebounce::getPinIn() const
 {
   return _pinIn;
+}
+
+unsigned long InputDebounce::getDebounceDelay() const
+{
+  return _debounceDelay;
+}
+
+InputDebounce::PinInMode InputDebounce::getPinInMode() const
+{
+  return _pinInMode;
+}
+
+unsigned long InputDebounce::getPressedDurationMode() const
+{
+  return _pressedDurationMode;
+}
+
+InputDebounce::SwitchType InputDebounce::getSwitchType() const
+{
+  return _switchType;
 }
 
 unsigned long InputDebounce::getStateOnCount() const

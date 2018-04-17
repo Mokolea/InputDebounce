@@ -49,19 +49,24 @@ public:
   explicit InputDebounce(int8_t pinIn = -1, // set input pin >= 0 to enable --> calls setup
                 unsigned long debounceDelay = DEFAULT_INPUT_DEBOUNCE_DELAY,
                 PinInMode pinInMode = PIM_INT_PULL_UP_RES,
-                unsigned long pressedDuration = 0, // pressed-on time duration: 0 continuous; >0 single-shot [ms]
+                unsigned long pressedDurationMode = 0, // pressed-on time duration: 0 continuous; >0 single-shot [ms]
                 SwitchType switchType = ST_NORMALLY_OPEN);
   virtual ~InputDebounce();
   
   void setup(int8_t pinIn,
              unsigned long debounceDelay = DEFAULT_INPUT_DEBOUNCE_DELAY,
              PinInMode pinInMode = PIM_INT_PULL_UP_RES,
-             unsigned long pressedDuration = 0,
+             unsigned long pressedDurationMode = 0,
              SwitchType switchType = ST_NORMALLY_OPEN);
 
   unsigned long process(unsigned long now); // poll button state, returns continuous pressed-on time duration if on (> debounce delay)
   
   uint8_t getPinIn() const;
+  unsigned long getDebounceDelay() const;
+  InputDebounce::PinInMode getPinInMode() const;
+  unsigned long getPressedDurationMode() const;
+  InputDebounce::SwitchType getSwitchType() const;
+  
   unsigned long getStateOnCount() const;
   
   void registerCallbacks(inputdebounce_state_cb pressedCallback,
@@ -83,7 +88,7 @@ private:
   uint8_t _pinIn;
   unsigned long _debounceDelay;
   PinInMode _pinInMode;
-  unsigned long _pressedDuration;
+  unsigned long _pressedDurationMode;
   SwitchType _switchType;
   
   bool _enabled;
