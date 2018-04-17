@@ -76,8 +76,8 @@ public:
   
   void registerCallbacks(inputdebounce_state_cb pressedCallback,
                          inputdebounce_state_cb releasedCallback,
-                         inputdebounce_duration_cb pressedDurationCallback, // still pressed state: continuous or single-shot pressed-on time duration [ms]
-                         inputdebounce_duration_cb releasedDurationCallback); // pressed-on time duration on release [ms]
+                         inputdebounce_duration_cb pressedDurationCallback = NULL, // still pressed state: continuous or single-shot pressed-on time duration [ms]
+                         inputdebounce_duration_cb releasedDurationCallback = NULL); // pressed-on time duration on release [ms]
   
 protected:
   virtual void pressed(); // called once for state change
