@@ -146,9 +146,34 @@ InputDebounce::SwitchType InputDebounce::getSwitchType() const
   return _switchType;
 }
 
+bool InputDebounce::isEnabled() const
+{
+  return _enabled;
+}
+
+bool InputDebounce::isPressed() const
+{
+  return _stateOn;
+}
+
+bool InputDebounce::isReleased() const
+{
+  return !_stateOn;
+}
+
 unsigned long InputDebounce::getStateOnCount() const
 {
   return _stateOnCount;
+}
+
+unsigned long InputDebounce::getCurrentPressedDuration() const
+{
+  return _stateOn ? _currentPressedDuration : 0;
+}
+
+unsigned long InputDebounce::getLastPressedDuration() const
+{
+  return !_stateOn ? _currentPressedDuration : 0;
 }
 
 void InputDebounce::registerCallbacks(inputdebounce_state_cb pressedCallback, inputdebounce_state_cb releasedCallback,

@@ -66,8 +66,13 @@ public:
   InputDebounce::PinInMode getPinInMode() const;
   unsigned long getPressedDurationMode() const;
   InputDebounce::SwitchType getSwitchType() const;
-  
+
+  bool isEnabled() const;
+  bool isPressed() const;
+  bool isReleased() const;
   unsigned long getStateOnCount() const;
+  unsigned long getCurrentPressedDuration() const; // if currently in pressed state
+  unsigned long getLastPressedDuration() const; // if currently in released state
   
   void registerCallbacks(inputdebounce_state_cb pressedCallback,
                          inputdebounce_state_cb releasedCallback,
