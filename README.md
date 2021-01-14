@@ -18,7 +18,7 @@ Simple polling input debounce [Arduino](https://www.arduino.cc/) library. Also u
     - normally open (default)
     - normally closed
 
-Available from the Arduino IDE [Library Manager](https://www.arduino.cc/en/Guide/Libraries) and for PlatformIO as [library](http://platformio.org/lib/show/123/InputDebounce) (Id #123).
+Available from the Arduino IDE [Library Manager](https://www.arduino.cc/en/Guide/Libraries) and for PlatformIO as [library](https://platformio.org/lib/show/123/InputDebounce) (Id #123).
 
 ## Usage
 Just see the [examples](examples):
